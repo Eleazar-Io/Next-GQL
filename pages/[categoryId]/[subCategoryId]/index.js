@@ -1,4 +1,3 @@
-import TopNav from "../../../components/TopNav"
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Card from '@mui/material/Card';
@@ -31,9 +30,9 @@ export default function subCategory(){
             </Head>
                 {
                     data.category.products.items.map((res)=>(
-                        <Link href="/[categoryId]/[subCategoryId]/[productId]" as={`/${categoryId}/${subCategoryId}/${res.url_key}`}>
-                            <a>
-                                <Card key={res.id} sx={{ maxWidth: 345 }}>
+                        <Card key={res.id} sx={{ maxWidth: 345 }}>
+                            <Link href="/[categoryId]/[subCategoryId]/[productId]" as={`/${categoryId}/${subCategoryId}/${res.url_key}`}>
+                                <a>
                                     <CardActionArea>
                                     <CardMedia
                                         component="img"
@@ -53,9 +52,9 @@ export default function subCategory(){
                                     <CardActions>
                                         <Button size="small">Details</Button>
                                     </CardActions>
-                                </Card>
-                            </a>
-                        </Link>
+                                </a>
+                            </Link>
+                        </Card>
                     ))
                 }
         </>

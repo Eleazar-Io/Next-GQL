@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -17,15 +16,12 @@ const theme = createTheme({
       dark: '#ff6333',
       contrastText: '#000',
     },
+    background: {
+      paper: '#f5f5f5',
+      default: '#f5f5f5'
+    }
   },
 });
-
-const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
-  color: theme.status.danger,
-  '&.Mui-checked': {
-    color: theme.status.danger,
-  },
-}));
 
 export default function CustomStyles({children}) {
   return (
