@@ -48,6 +48,7 @@ export const QUERY_PRODUCT = gql`
 query getProduct($urlKey: String){
   products(filter:{url_key:{eq: $urlKey}}){
     items{
+      url_key
       id
       name
       short_description{

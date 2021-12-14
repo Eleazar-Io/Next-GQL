@@ -2,19 +2,40 @@ import { makeStyles } from "@mui/styles"
 
 const useStyles = makeStyles({
     container: {
-        backgroundColor: "#f5f5f5",
+        marginBottom: 16
+    },
+    contentNav: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 8,
+    },
+    backIcon: {
+        marginRight: 8,
+    },
+    title: {
+        color:'#424242',
+        fontSize: 24,
+        fontWeight: "bold",
+        marginBottom: 8
     },
     item: {
+        borderRadius: 6,
+        backgroundColor: "#e0e0e0",
         height: 160,
         textAlign: 'center',
+        color:'#424242',
         '&:hover': {
-            backgroundColor: '#e3f2fd'
+            backgroundColor: '#ef6c00',
+            color: '#f5f5f5'
         },
         '&:active': {
-            backgroundColor: '#bbdefb'
+            backgroundColor: '#ffa726',
+            color: '#f5f5f5'
         }
     },
     
 })
+
 
 export default useStyles

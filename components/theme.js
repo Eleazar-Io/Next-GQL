@@ -16,11 +16,14 @@ const theme = createTheme({
       dark: '#ff6333',
       contrastText: '#000',
     },
-    background: {
-      paper: '#f5f5f5',
-      default: '#f5f5f5'
-    }
   },
+  typography: {
+    "fontFamily": `'Palanquin', "Helvetica", "Arial", sans-serif`,
+    "fontSize": 14,
+    "fontWeightLight": 300,
+    "fontWeightRegular": 400,
+    "fontWeightMedium": 500
+   }
 });
 
 export default function CustomStyles({children}) {

@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function TopNav(){
     return(
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar color="primary" position="static">
+            <AppBar style={{marginBottom: 24}} color="primary" position="static">
                 <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     <Link href="/"><a>Home</a></Link>

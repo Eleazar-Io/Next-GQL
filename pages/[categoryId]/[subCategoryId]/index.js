@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useQuery } from "@apollo/client"
 import { CardActionArea } from "@mui/material";
 import {QUERY_SUBCATEGORY} from "../../../config/apollo/Schema"
+import Load from "../../../components/load";
 
 export default function subCategory(){
     const router = useRouter()
@@ -20,7 +21,7 @@ export default function subCategory(){
         }
     });
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Load></Load>
     if (error) return <p>Error :(</p>;
     console.log(data);
     return(
@@ -31,7 +32,7 @@ export default function subCategory(){
                 {
                     data.category.products.items.map((res)=>(
                         <Card key={res.id} sx={{ maxWidth: 345 }}>
-                            <Link href="/[categoryId]/[subCategoryId]/[productId]" as={`/${categoryId}/${subCategoryId}/${res.url_key}`}>
+                            <Link href="/product/[productId]" as={`/product/${res.url_key}`}>
                                 <a>
                                     <CardActionArea>
                                     <CardMedia

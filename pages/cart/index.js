@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState, useEffect } from "react";
-import { Typography, Button, Card, CardActionArea, CardMedia, CardContent, CardActions } from "@mui/material"
+import { Typography, Button, Card, CardActionArea, CardMedia, CardContent, CardActions, Link } from "@mui/material"
 import Head from "next/head";
 
 export default function Cart(){
@@ -47,8 +47,6 @@ export default function Cart(){
                     </Card>
                 ))
             }
-            
-            
         </>
     )
 }

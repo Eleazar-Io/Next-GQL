@@ -1,13 +1,15 @@
 import Head from "next/head"
-import { QUERY_PRODUCT } from "../../../config/apollo/Schema"
+import { QUERY_PRODUCT } from "../../config/apollo/Schema"
 import { useRouter } from "next/router"
 import { useQuery } from "@apollo/client"
-import { Typography, Button, Card, CardMedia, CardContent, CardActions } from "@mui/material"
+import { Typography, Button, Card, CardMedia, CardContent, CardActions, Snackbar, Alert } from "@mui/material"
 import { useState, useEffect } from "react"
+import Load from "../../components/load"
 
 const Product = ()=> {
     const router = useRouter()
-    
+
+    const [open, setOpen] = useState(false)
     const [carts, setCarts] = useState([])
     useEffect(()=>{
         let cart = sessionStorage.getItem('cart')
@@ -31,14 +33,23 @@ const Product = ()=> {
             let toCartItem = JSON.stringify(savedCart)
             sessionStorage.setItem('cart', toCartItem)
         }
+        setOpen(true)
     }
+
+    const handleClose = (event, reason) => {
+        // if (reason === 'clickaway') {
+        //   return;
+        // }
+        setOpen(false);
+      };
+
     const { productId } = router.query
     const { loading, error, data } = useQuery(QUERY_PRODUCT,{
         variables: {
             urlKey: productId
         }
     });
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Load></Load>
     if (error) return <p>Error</p>;
     const res = data.products.items[0]
     const price = res.price_range.minimum_price.regular_price
@@ -69,6 +80,15 @@ const Product = ()=> {
                     </Button>
                 </CardActions>
             </Card>
+            <Snackbar
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+            >
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Added to Cart!
+                </Alert>
+            </Snackbar>
         </>
     )
 }
