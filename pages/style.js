@@ -2,7 +2,6 @@ import { makeStyles } from "@mui/styles"
 
 const useStyles = makeStyles({
     main: {
-        backgroundColor: "#fafafa",
         padding: 0,
         margin: 0
     },

@@ -12,10 +12,10 @@ function MyApp({ Component, pageProps }) {
   return(
     <ApolloProvider client={client}>
       <ThemeProvider>
-          <TopNav></TopNav> 
-          <Container maxWidth="xl" className={style.container}>
-            <Component {...pageProps} />
-          </Container>
+        <TopNav></TopNav>
+        <Container maxWidth="xl" className={style.container}>
+          <Component {...pageProps}/>
+        </Container>
       </ThemeProvider>
     </ApolloProvider>
   )

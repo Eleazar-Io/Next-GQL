@@ -2,17 +2,19 @@ import Head from "next/head"
 import { QUERY_PRODUCT } from "../../config/apollo/Schema"
 import { useRouter } from "next/router"
 import { useQuery } from "@apollo/client"
-import { Typography, Button, Card, CardMedia, CardContent, CardActions, Snackbar, Alert } from "@mui/material"
+import { Typography, Button, Snackbar, Alert, Grid, Divider } from "@mui/material"
 import { useState, useEffect } from "react"
 import Load from "../../components/load"
+import ContentNav from "../../components/ContentNav"
+import useStyles from './style'
 
 const Product = ()=> {
     const router = useRouter()
-
+    const style = useStyles()
     const [open, setOpen] = useState(false)
     const [carts, setCarts] = useState([])
     useEffect(()=>{
-        let cart = sessionStorage.getItem('cart')
+        let cart = localStorage.getItem('cart')
         if (cart === null){
             setCarts([]);
         }
@@ -25,13 +27,13 @@ const Product = ()=> {
         if(carts.length === 0){
             let product = [res]
             let toCartItem = JSON.stringify(product)
-            sessionStorage.setItem('cart', toCartItem)
+            localStorage.setItem('cart', toCartItem)
         }
         else {
             let savedCart = carts
             savedCart.push(res)
             let toCartItem = JSON.stringify(savedCart)
-            sessionStorage.setItem('cart', toCartItem)
+            localStorage.setItem('cart', toCartItem)
         }
         setOpen(true)
     }
@@ -57,29 +59,26 @@ const Product = ()=> {
     return(
         <>
             <Head><title>{res.name}</title></Head>
-            <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                component="img"
-                height="300"
-                image={res.image.url}
-                alt={res.name}
-                />
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {res.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Price: {price.currency} {price.value}<br/>
-                    Description: <br/>
-                    <div dangerouslySetInnerHTML={{__html: res.description.html}}></div>
-                </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button onClick={addToCart} size="small" color="primary">
-                        Add to Cart
+            <ContentNav
+                title={res.name}
+            />
+            <Grid container spacing={3}>
+                <Grid item md={4}>
+                    <img width={400} src={res.image.url}/>
+                </Grid>
+                <Grid item md={5}>
+                    <Typography className={style.title} variant="h6">{res.name}</Typography>
+                    <Typography className={style.price} variant="h5">{price.currency} {price.value}</Typography>
+                    <Divider/>
+                    <Typography className={style.infoTitle}>Item Info</Typography>
+                    <Typography className={style.info} dangerouslySetInnerHTML={{__html: res.description.html}}></Typography>
+                </Grid>
+                <Grid item md={2}>
+                    <Button className={style.toCartBtn} onClick={addToCart} size="large" disableElevation variant="contained" color="secondary">
+                        + Add to Cart
                     </Button>
-                </CardActions>
-            </Card>
+                </Grid>
+            </Grid>
             <Snackbar
                 open={open}
                 autoHideDuration={3000}

@@ -1,24 +1,6 @@
 import { makeStyles } from "@mui/styles"
 
 const useStyles = makeStyles({
-    container: {
-        marginBottom: 16
-    },
-    contentNav: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 8,
-    },
-    backIcon: {
-        marginRight: 8,
-    },
-    title: {
-        color:'#424242',
-        fontSize: 24,
-        fontWeight: "bold",
-        marginBottom: 8
-    },
     item: {
         borderRadius: 6,
         backgroundColor: "#e0e0e0",

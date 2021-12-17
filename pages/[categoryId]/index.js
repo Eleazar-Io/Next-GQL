@@ -7,6 +7,7 @@ import {QUERY_CATEGORY} from "../../config/apollo/Schema"
 import useStyles from "./style";
 import Load from "../../components/load"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ContentNav from "../../components/ContentNav"
 
 export default function CategoryDetail(){
     const router = useRouter()
@@ -27,12 +28,9 @@ export default function CategoryDetail(){
             <Head>
                 <title>{data.category.name}</title>
             </Head>
-            <div className={style.contentNav}>
-                <Button onClick={()=>router.back()} className={style.backIcon} variant="text">
-                    <ArrowBackIosNewIcon/>
-                </Button>
-                <Typography className={style.title}>{data.category.name}</Typography>
-            </div>
+            <ContentNav
+                title={data.category.name}
+            />
             <List>
                 <Grid container spacing={3}>
                 {
